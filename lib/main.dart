@@ -48,6 +48,13 @@ class MyHomePage extends StatelessWidget {
     ),
   ]; // list of transactions(custom class Transaction is not a widget)
 
+  // user input variables
+  // String titleInput;
+  // String amountInput;
+
+  final titleController = TextEditingController(); // flutter controller for text input
+  final amountController = TextEditingController(); // flutter controller for text input
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,14 +84,26 @@ class MyHomePage extends StatelessWidget {
                 children: <Widget>[
                   TextField(
                     decoration: InputDecoration(labelText: 'Title'),
+                    controller: titleController, // using the flutter controller for text input
+                    // onChanged: (value){
+                    //   titleInput = value;
+                    // },
                   ),
                   TextField(
                     decoration: InputDecoration(labelText: 'Amount'),
+                    controller: amountController, // using the flutter controller for text input
+                    // onChanged: (value){
+                    //   amountInput = value;
+                    // },
                   ),
                   FlatButton(
                     child: Text('Add Transaction'),
-                    onPressed: () {},
-                    textColor: Colors.purple,
+                    textColor: Colors.purple, 
+                    onPressed: () {
+                      print(titleController.text);
+                      print(amountController.text);
+                    },
+                    
                   ),
                 ],
               ),
