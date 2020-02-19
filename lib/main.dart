@@ -55,7 +55,7 @@ class MyHomePage extends StatelessWidget {
         title: Text('Flutter App'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        // mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Container(
@@ -66,6 +66,28 @@ class MyHomePage extends StatelessWidget {
                 'CHART!',
               ),
               elevation: 5,
+            ),
+          ),
+          Card(
+            elevation: 5,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Title'),
+                  ),
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Amount'),
+                  ),
+                  FlatButton(
+                    child: Text('Add Transaction'),
+                    onPressed: () {},
+                    textColor: Colors.purple,
+                  ),
+                ],
+              ),
             ),
           ),
           Column(
@@ -106,7 +128,8 @@ class MyHomePage extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            DateFormat.yMMMMd().format(tx.date), // '${tx.date}', // string interpolation syxtax
+                            DateFormat.yMMMMd().format(tx
+                                .date), // '${tx.date}', // string interpolation syxtax
                             style: TextStyle(
                               color: Colors.grey,
                               fontSize: 14,
