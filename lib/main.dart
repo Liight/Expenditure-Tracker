@@ -1,5 +1,6 @@
 // flutter
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 // custom
 import './transaction.dart';
@@ -86,7 +87,7 @@ class MyHomePage extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        tx.amount.toString(),
+                        '\$${tx.amount}', // \$ escaped char to get '$', ${tx.amount} string interpolation syntax
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
@@ -95,7 +96,6 @@ class MyHomePage extends StatelessWidget {
                       ),
                     ),
                     Column(
-
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
@@ -106,7 +106,7 @@ class MyHomePage extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            tx.date.toString(),
+                            DateFormat.yMMMMd().format(tx.date), // '${tx.date}', // string interpolation syxtax
                             style: TextStyle(
                               color: Colors.grey,
                               fontSize: 14,
