@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // custom
-import './widgets/transactionList.dart';
+import './widgets/user_transactions.dart';
 
 // run app
 void main() => runApp(MyApp());
@@ -49,42 +49,7 @@ class MyHomePage extends StatelessWidget {
               elevation: 5,
             ),
           ),
-          Card(
-            elevation: 5,
-            child: Container(
-              padding: EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: <Widget>[
-                  TextField(
-                    decoration: InputDecoration(labelText: 'Title'),
-                    controller:
-                        titleController, // using the flutter controller for text input
-                    // onChanged: (value){
-                    //   titleInput = value;
-                    // },
-                  ),
-                  TextField(
-                    decoration: InputDecoration(labelText: 'Amount'),
-                    controller:
-                        amountController, // using the flutter controller for text input
-                    // onChanged: (value){
-                    //   amountInput = value;
-                    // },
-                  ),
-                  FlatButton(
-                    child: Text('Add Transaction'),
-                    textColor: Colors.purple,
-                    onPressed: () {
-                      print(titleController.text);
-                      print(amountController.text);
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
-          TransactionList(),
+          UserTransactions(),
         ],
       ),
     );
