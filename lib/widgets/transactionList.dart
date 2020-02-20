@@ -33,7 +33,7 @@ class TransactionList extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    '\$${transactions[index].amount}', // \$ escaped char to get '$', ${tx.amount} string interpolation syntax
+                    '\$'+transactions[index].amount.toStringAsFixed(2), // fixed double to 2dp
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
@@ -53,7 +53,7 @@ class TransactionList extends StatelessWidget {
                     ),
                     Text(
                       DateFormat.yMMMMd().format(transactions[index]
-                          .date), // '${tx.date}', // string interpolation syxtax
+                          .date), // external formatter for date
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 14,
