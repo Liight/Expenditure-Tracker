@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_expenditure_tracker/widgets/new_transaction.dart';
 
 // custom
-import './widgets/transactionList.dart';
 import './models/transaction.dart';
+import './widgets/transactionList.dart';
+import './widgets/new_transaction.dart';
+import './widgets/chart.dart';
 
 // run app
 void main() => runApp(MyApp());
@@ -74,6 +76,15 @@ class _MyHomePageState extends State<MyHomePage> {
     // ),
   ];
 
+  List<Transaction> get _recentTransactions {
+    return _userTransactions.where((transaction) {
+      // return transaction of the last 7 days only
+      return transaction.date.isAfter(DateTime.now().subtract(
+        Duration(days: 7),
+      ));
+    }).toList();
+  }
+
   void _addNewTransaction(String txTitle, double txAmount) {
     final newTx = Transaction(
       title: txTitle,
@@ -109,20 +120,11 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () => _startAddNewTransaction(context),
             ),
           ]),
-      body: ListView(
-        children: <Widget>[
-          Container(
-            width: double.infinity,
-            child: Card(
-              color: Colors.blue,
-              child: Text(
-                'CHART!',
-              ),
-              elevation: 5,
-            ),
-          ),
+      body: SingleChildScrollView(
+        child: Column(children: <Widget>[
+          Chart(_recentTransactions),
           TransactionList(_userTransactions),
-        ],
+        ]),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
