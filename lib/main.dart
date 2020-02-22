@@ -12,7 +12,7 @@ import './widgets/chart.dart';
 // run app
 void main() {
   // SystemChrome.setPreferredOrientations(
-  //     [DeviceOrientation.portraitUp, 
+  //     [DeviceOrientation.portraitUp,
   //     DeviceOrientation.portraitDown]);
   runApp(MyApp());
 }
@@ -85,6 +85,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // ),
   ];
 
+  bool _showChart = false;
+
   List<Transaction> get _recentTransactions {
     return _userTransactions.where((transaction) {
       // return transaction of the last 7 days only
@@ -141,12 +143,29 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: appBar,
       body: SingleChildScrollView(
         child: Column(children: <Widget>[
-          Container(
-              height: (MediaQuery.of(context).size.height -
-                      appBar.preferredSize.height -
-                      MediaQuery.of(context).padding.top) *
-                  0.3,
-              child: Chart(_recentTransactions)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text('Show Chart'),
+              Switch(
+                value: _showChart,
+                onChanged: (value) {
+                  setState(() {
+                    _showChart = value;
+                  });
+                },
+              )
+            ],
+          ),
+          _showChart
+              ? Container(
+                  height: (MediaQuery.of(context).size.height -
+                          appBar.preferredSize.height -
+                          MediaQuery.of(context).padding.top) *
+                      0.7,
+                  child: Chart(_recentTransactions),
+                )
+              : 
           Container(
               height: (MediaQuery.of(context).size.height -
                       appBar.preferredSize.height -
