@@ -1,5 +1,6 @@
 // flutter
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_expenditure_tracker/widgets/new_transaction.dart';
 
 // custom
@@ -9,7 +10,12 @@ import './widgets/new_transaction.dart';
 import './widgets/chart.dart';
 
 // run app
-void main() => runApp(MyApp());
+void main() {
+  // SystemChrome.setPreferredOrientations(
+  //     [DeviceOrientation.portraitUp, 
+  //     DeviceOrientation.portraitDown]);
+  runApp(MyApp());
+}
 
 // main app
 class MyApp extends StatelessWidget {
@@ -137,12 +143,14 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(children: <Widget>[
           Container(
               height: (MediaQuery.of(context).size.height -
-                      appBar.preferredSize.height - MediaQuery.of(context).padding.top) *
+                      appBar.preferredSize.height -
+                      MediaQuery.of(context).padding.top) *
                   0.3,
               child: Chart(_recentTransactions)),
           Container(
               height: (MediaQuery.of(context).size.height -
-                      appBar.preferredSize.height - MediaQuery.of(context).padding.top) *
+                      appBar.preferredSize.height -
+                      MediaQuery.of(context).padding.top) *
                   0.7,
               child: TransactionList(_userTransactions, _deleteTransaction)),
         ]),
