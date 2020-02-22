@@ -13,9 +13,10 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return transactions.isEmpty
-        ? LayoutBuilder(builder: (context, constraints){
-          return Column(children: <Widget>[
+        ? LayoutBuilder(builder: (context, constraints) {
+            return Column(children: <Widget>[
               Text('No transactions added yet',
                   style: Theme.of(context).textTheme.title),
               SizedBox(
@@ -28,9 +29,7 @@ class TransactionList extends StatelessWidget {
                     fit: BoxFit.cover,
                   )),
             ]);
-        })
-                  
-        
+          })
         : ListView.builder(
             itemBuilder: (context, index) {
               return Card(
