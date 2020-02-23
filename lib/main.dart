@@ -24,33 +24,42 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Expenditure Tracker',
-      home: MyHomePage(),
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
-        accentColor: Colors.amber,
-        fontFamily: 'Quicksand',
-        textTheme: ThemeData.light().textTheme.copyWith(
-              title: TextStyle(
-                fontFamily: 'Open Sans',
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
-              button: TextStyle(
-                color: Colors.white,
-              ),
+    return Platform.isIOS
+        ? CupertinoApp(
+            title: 'Expenditure Tracker',
+            home: MyHomePage(),
+            theme: CupertinoThemeData(
+              primaryColor: Colors.purple,
+              primaryContrastingColor: Colors.amber,
             ),
-        appBarTheme: AppBarTheme(
-            textTheme: ThemeData.light().textTheme.copyWith(
-                  title: TextStyle(
-                    fontFamily: 'Open Sans',
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+          )
+        : MaterialApp(
+            title: 'Expenditure Tracker',
+            home: MyHomePage(),
+            theme: ThemeData(
+              primarySwatch: Colors.purple,
+              accentColor: Colors.amber,
+              fontFamily: 'Quicksand',
+              textTheme: ThemeData.light().textTheme.copyWith(
+                    title: TextStyle(
+                      fontFamily: 'Open Sans',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                    button: TextStyle(
+                      color: Colors.white,
+                    ),
                   ),
-                )),
-      ),
-    );
+              appBarTheme: AppBarTheme(
+                  textTheme: ThemeData.light().textTheme.copyWith(
+                        title: TextStyle(
+                          fontFamily: 'Open Sans',
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )),
+            ),
+          );
   }
 }
 
@@ -173,7 +182,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text('Show Chart'),
+                Text('Show Chart', style: Theme.of(context).textTheme.title),
                 Switch.adaptive(
                   activeColor: Theme.of(context).accentColor,
                   value: _showChart,
