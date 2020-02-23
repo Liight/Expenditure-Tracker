@@ -32,10 +32,13 @@ class TransactionList extends StatelessWidget {
           })
         : ListView.builder(
             itemBuilder: (context, index) {
-              return TransactionItem(transaction: transactions[index], deleteTx: deleteTx);
+              return TransactionItem(
+                  key:
+                      ValueKey(transactions[index].id), // Key step 1: Set the key at the topmost Widget(see: transaction_item)
+                  transaction: transactions[index],
+                  deleteTx: deleteTx);
             },
             itemCount: transactions.length,
           );
   }
 }
-
