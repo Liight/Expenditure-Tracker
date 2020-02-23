@@ -53,7 +53,7 @@ class Chart extends StatelessWidget {
       margin: EdgeInsets.all(20),
       child: Container(
         padding: EdgeInsets.all(10),
-        width: double.maxFinite,
+        // width: double.maxFinite,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: groupedTransactionValues.map((data) {
