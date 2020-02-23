@@ -1,7 +1,6 @@
 // dart
 import 'dart:io';
 // flutter
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -69,7 +68,7 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
   final List<Transaction> _userTransactions = [
     // Transaction(
     //   id: 't1',
@@ -98,6 +97,26 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
 
   bool _showChart = false;
+
+  // adding listeners
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  // listens for app lifecycle changes
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state){
+    print(state);
+  }
+
+  // removing listeners
+  @override
+  dispose(){
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 
   List<Transaction> get _recentTransactions {
     return _userTransactions.where((transaction) {
